@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+package example;
+
+message Root {
+    Child child = 1;
+    google.protobuf.Timestamp timestamp = 2;
+
+    message Child {
+        Grandchild grandchild = 1;
+
+        message Grandchild {
+            enum Bar {
+                UNKNOWN = 0;
+                FOO = 1;
+                BAR = 2;
+            }
+        }
+    }
+}
+
+service Example {
+    rpc Foo(Root) returns (google.protobuf.Empty);
+}
