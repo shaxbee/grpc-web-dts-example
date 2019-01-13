@@ -15,6 +15,8 @@ var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb
 goog.object.extend(proto, google_protobuf_empty_pb);
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js');
 goog.object.extend(proto, google_protobuf_timestamp_pb);
+var other_other_pb = require('../other/other_pb.js');
+goog.object.extend(proto, other_other_pb);
 goog.exportSymbol('proto.example.Root', null, global);
 goog.exportSymbol('proto.example.Root.Child', null, global);
 goog.exportSymbol('proto.example.Root.Child.Grandchild', null, global);

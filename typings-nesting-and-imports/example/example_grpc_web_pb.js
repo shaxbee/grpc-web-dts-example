@@ -15,6 +15,8 @@ grpc.web = require('grpc-web');
 var google_protobuf_empty_pb = require('google-protobuf/google/protobuf/empty_pb.js')
 
 var google_protobuf_timestamp_pb = require('google-protobuf/google/protobuf/timestamp_pb.js')
+
+var other_other_pb = require('../other/other_pb.js')
 const proto = {};
 proto.example = require('./example_pb.js');
 
@@ -126,6 +128,63 @@ proto.example.ExamplePromiseClient.prototype.foo =
   var _this = this;
   return new Promise(function (resolve, reject) {
     _this.delegateClient_.foo(
+      request, metadata, function (error, response) {
+        error ? reject(error) : resolve(response);
+      });
+  });
+};
+
+
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.google.protobuf.Empty,
+ *   !proto.other.Other>}
+ */
+const methodInfo_Example_Other = new grpc.web.AbstractClientBase.MethodInfo(
+  other_other_pb.Other,
+  /** @param {!proto.google.protobuf.Empty} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  other_other_pb.Other.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.google.protobuf.Empty} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.other.Other)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.other.Other>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.example.ExampleClient.prototype.other =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/example.Example/Other',
+      request,
+      metadata || {},
+      methodInfo_Example_Other,
+      callback);
+};
+
+
+/**
+ * @param {!proto.google.protobuf.Empty} request The
+ *     request proto
+ * @param {?Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.other.Other>}
+ *     The XHR Node Readable Stream
+ */
+proto.example.ExamplePromiseClient.prototype.other =
+    function(request, metadata) {
+  var _this = this;
+  return new Promise(function (resolve, reject) {
+    _this.delegateClient_.other(
       request, metadata, function (error, response) {
         error ? reject(error) : resolve(response);
       });

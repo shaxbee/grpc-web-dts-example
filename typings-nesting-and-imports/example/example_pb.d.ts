@@ -1,5 +1,6 @@
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
+import * as other_other_pb from '../other/other_pb';
 
 export class Root {
   constructor ();
@@ -49,5 +50,8 @@ export namespace Root {
         BAR = 2,
       }
     }
+
   }
+
 }
+

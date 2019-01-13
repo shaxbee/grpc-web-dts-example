@@ -2,6 +2,7 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
+import "other/other.proto";
 
 package example;
 
@@ -24,4 +25,5 @@ message Root {
 
 service Example {
     rpc Foo(Root) returns (google.protobuf.Empty);
+    rpc Other(google.protobuf.Empty) returns (other.Other);
 }
