@@ -49,8 +49,5 @@ export namespace Root {
         BAR = 2,
       }
     }
-
   }
-
 }
-
