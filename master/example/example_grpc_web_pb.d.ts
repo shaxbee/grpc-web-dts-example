@@ -1,11 +1,10 @@
 import * as grpcWeb from 'grpc-web';
-import {
-  Root,
-  Child,
-  Grandchild,
-  Empty,
-  Timestamp,
-  Other} from './example_pb';
+
+import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
+import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
+import * as other_other_pb from '../other/other_pb';
+
+import {Root} from './example_pb';
 
 export class ExampleClient {
   constructor (hostname: string,
@@ -16,15 +15,15 @@ export class ExampleClient {
     request: Root,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: Empty) => void
-  ): grpcWeb.ClientReadableStream<Empty>;
+               response: google_protobuf_empty_pb.Empty) => void
+  ): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
 
   other(
-    request: Empty,
+    request: google_protobuf_empty_pb.Empty,
     metadata: grpcWeb.Metadata | undefined,
     callback: (err: grpcWeb.Error,
-               response: Other) => void
-  ): grpcWeb.ClientReadableStream<Other>;
+               response: other_other_pb.Other) => void
+  ): grpcWeb.ClientReadableStream<other_other_pb.Other>;
 
 }
 
@@ -36,12 +35,12 @@ export class ExamplePromiseClient {
   foo(
     request: Root,
     metadata?: grpcWeb.Metadata
-  ): Promise<Empty>;
+  ): Promise<google_protobuf_empty_pb.Empty>;
 
   other(
-    request: Empty,
+    request: google_protobuf_empty_pb.Empty,
     metadata?: grpcWeb.Metadata
-  ): Promise<Other>;
+  ): Promise<other_other_pb.Other>;
 
 }
 
