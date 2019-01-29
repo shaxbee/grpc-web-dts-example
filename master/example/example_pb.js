@@ -208,7 +208,7 @@ proto.example.Root.Child.prototype.toObject = function(opt_includeInstance) {
  */
 proto.example.Root.Child.toObject = function(includeInstance, msg) {
   var f, obj = {
-    grandchild: (f = msg.getGrandchild()) && proto.example.Root.Child.Grandchild.toObject(includeInstance, f)
+    grandchildrenMap: (f = msg.getGrandchildrenMap()) ? f.toObject(includeInstance, proto.example.Root.Child.Grandchild.toObject) : []
   };
 
   if (includeInstance) {
@@ -246,9 +246,10 @@ proto.example.Root.Child.deserializeBinaryFromReader = function(msg, reader) {
     var field = reader.getFieldNumber();
     switch (field) {
     case 1:
-      var value = new proto.example.Root.Child.Grandchild;
-      reader.readMessage(value,proto.example.Root.Child.Grandchild.deserializeBinaryFromReader);
-      msg.setGrandchild(value);
+      var value = msg.getGrandchildrenMap();
+      reader.readMessage(value, function(message, reader) {
+        jspb.Map.deserializeBinary(message, reader, jspb.BinaryReader.prototype.readString, jspb.BinaryReader.prototype.readMessage, proto.example.Root.Child.Grandchild.deserializeBinaryFromReader, "");
+         });
       break;
     default:
       reader.skipField();
@@ -279,13 +280,9 @@ proto.example.Root.Child.prototype.serializeBinary = function() {
  */
 proto.example.Root.Child.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getGrandchild();
-  if (f != null) {
-    writer.writeMessage(
-      1,
-      f,
-      proto.example.Root.Child.Grandchild.serializeBinaryToWriter
-    );
+  f = message.getGrandchildrenMap(true);
+  if (f && f.getLength() > 0) {
+    f.serializeBinary(1, writer, jspb.BinaryWriter.prototype.writeString, jspb.BinaryWriter.prototype.writeMessage, proto.example.Root.Child.Grandchild.serializeBinaryToWriter);
   }
 };
 
@@ -416,32 +413,20 @@ proto.example.Root.Child.Grandchild.Bar = {
 };
 
 /**
- * optional Grandchild grandchild = 1;
- * @return {?proto.example.Root.Child.Grandchild}
+ * map<string, Grandchild> grandchildren = 1;
+ * @param {boolean=} opt_noLazyCreate Do not create the map if
+ * empty, instead returning `undefined`
+ * @return {!jspb.Map<string,!proto.example.Root.Child.Grandchild>}
  */
-proto.example.Root.Child.prototype.getGrandchild = function() {
-  return /** @type{?proto.example.Root.Child.Grandchild} */ (
-    jspb.Message.getWrapperField(this, proto.example.Root.Child.Grandchild, 1));
+proto.example.Root.Child.prototype.getGrandchildrenMap = function(opt_noLazyCreate) {
+  return /** @type {!jspb.Map<string,!proto.example.Root.Child.Grandchild>} */ (
+      jspb.Message.getMapField(this, 1, opt_noLazyCreate,
+      proto.example.Root.Child.Grandchild));
 };
 
 
-/** @param {?proto.example.Root.Child.Grandchild|undefined} value */
-proto.example.Root.Child.prototype.setGrandchild = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.example.Root.Child.prototype.clearGrandchild = function() {
-  this.setGrandchild(undefined);
-};
-
-
-/**
- * Returns whether this field is set.
- * @return {!boolean}
- */
-proto.example.Root.Child.prototype.hasGrandchild = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.example.Root.Child.prototype.clearGrandchildrenMap = function() {
+  this.getGrandchildrenMap().clear();
 };
 
 

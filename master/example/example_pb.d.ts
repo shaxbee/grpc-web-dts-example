@@ -1,16 +1,21 @@
+import * as jspb from "google-protobuf"
+
 import * as google_protobuf_empty_pb from 'google-protobuf/google/protobuf/empty_pb';
 import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/timestamp_pb';
 import * as other_other_pb from '../other/other_pb';
 
-export class Root {
+export class Root extends jspb.Message {
   constructor ();
   getChild(): Root.Child;
   setChild(a: Root.Child): void;
   getTimestamp(): google_protobuf_timestamp_pb.Timestamp;
   setTimestamp(a: google_protobuf_timestamp_pb.Timestamp): void;
-  toObject(): Root.AsObject;
   serializeBinary(): Uint8Array;
-  static deserializeBinary: (bytes: {}) => Root;
+  toObject(includeInstance?: boolean): Root.AsObject;
+  static toObject(includeInstance: boolean, msg: Root): Root.AsObject;
+  static serializeBinaryToWriter(message: Root, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): Root;
+  static deserializeBiinaryFromReader(message: Root, reader: jspb.BinaryReader): Root;
 }
 
 export namespace Root {
@@ -19,25 +24,53 @@ export namespace Root {
     timestamp: google_protobuf_timestamp_pb.Timestamp;
   }
 
-  export class Child {
+  export class Child extends jspb.Message {
     constructor ();
-    getGrandchild(): Root.Child.Grandchild;
-    setGrandchild(a: Root.Child.Grandchild): void;
-    toObject(): Child.AsObject;
+    getGrandchildrenList(): Root.Child.GrandchildrenEntry[];
+    setGrandchildrenList(a: Root.Child.GrandchildrenEntry[]): void;
     serializeBinary(): Uint8Array;
-    static deserializeBinary: (bytes: {}) => Child;
+    toObject(includeInstance?: boolean): Child.AsObject;
+    static toObject(includeInstance: boolean, msg: Child): Child.AsObject;
+    static serializeBinaryToWriter(message: Child, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Child;
+    static deserializeBiinaryFromReader(message: Child, reader: jspb.BinaryReader): Child;
   }
 
   export namespace Child {
     export type AsObject = {
-      grandchild: Root.Child.Grandchild;
+      grandchildrenList: Root.Child.GrandchildrenEntry[];
     }
 
-    export class Grandchild {
+    export class GrandchildrenEntry extends jspb.Message {
       constructor ();
-      toObject(): Grandchild.AsObject;
+      getKey(): string;
+      setKey(a: string): void;
+      getValue(): Root.Child.Grandchild;
+      setValue(a: Root.Child.Grandchild): void;
       serializeBinary(): Uint8Array;
-      static deserializeBinary: (bytes: {}) => Grandchild;
+      toObject(includeInstance?: boolean): GrandchildrenEntry.AsObject;
+      static toObject(includeInstance: boolean, msg: GrandchildrenEntry): GrandchildrenEntry.AsObject;
+      static serializeBinaryToWriter(message: GrandchildrenEntry, writer: jspb.BinaryWriter): void;
+      static deserializeBinary(bytes: Uint8Array): GrandchildrenEntry;
+      static deserializeBiinaryFromReader(message: GrandchildrenEntry, reader: jspb.BinaryReader): GrandchildrenEntry;
+    }
+
+    export namespace GrandchildrenEntry {
+      export type AsObject = {
+        key: string;
+        value: Root.Child.Grandchild;
+      }
+    }
+
+
+    export class Grandchild extends jspb.Message {
+      constructor ();
+      serializeBinary(): Uint8Array;
+      toObject(includeInstance?: boolean): Grandchild.AsObject;
+      static toObject(includeInstance: boolean, msg: Grandchild): Grandchild.AsObject;
+      static serializeBinaryToWriter(message: Grandchild, writer: jspb.BinaryWriter): void;
+      static deserializeBinary(bytes: Uint8Array): Grandchild;
+      static deserializeBiinaryFromReader(message: Grandchild, reader: jspb.BinaryReader): Grandchild;
     }
 
     export namespace Grandchild {

@@ -11,7 +11,7 @@ message Root {
     google.protobuf.Timestamp timestamp = 2;
 
     message Child {
-        Grandchild grandchild = 1;
+        map<string, Grandchild> grandchildren = 1;
 
         message Grandchild {
             enum Bar {
