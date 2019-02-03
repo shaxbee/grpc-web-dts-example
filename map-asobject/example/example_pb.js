@@ -30,12 +30,19 @@ goog.exportSymbol('proto.example.Root.Child.Grandchild.Bar', null, global);
  * @constructor
  */
 proto.example.Root = function(opt_data) {
-  jspb.Message.initialize(this, opt_data, 0, -1, null, null);
+  jspb.Message.initialize(this, opt_data, 0, -1, proto.example.Root.repeatedFields_, null);
 };
 goog.inherits(proto.example.Root, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   proto.example.Root.displayName = 'proto.example.Root';
 }
+/**
+ * List of repeated fields within this message type.
+ * @private {!Array<number>}
+ * @const
+ */
+proto.example.Root.repeatedFields_ = [1,3];
+
 
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
@@ -65,8 +72,10 @@ proto.example.Root.prototype.toObject = function(opt_includeInstance) {
  */
 proto.example.Root.toObject = function(includeInstance, msg) {
   var f, obj = {
-    child: (f = msg.getChild()) && proto.example.Root.Child.toObject(includeInstance, f),
-    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f)
+    childList: jspb.Message.toObjectList(msg.getChildList(),
+    proto.example.Root.Child.toObject, includeInstance),
+    timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
+    idsList: jspb.Message.getRepeatedField(msg, 3)
   };
 
   if (includeInstance) {
@@ -106,12 +115,16 @@ proto.example.Root.deserializeBinaryFromReader = function(msg, reader) {
     case 1:
       var value = new proto.example.Root.Child;
       reader.readMessage(value,proto.example.Root.Child.deserializeBinaryFromReader);
-      msg.setChild(value);
+      msg.addChild(value);
       break;
     case 2:
       var value = new google_protobuf_timestamp_pb.Timestamp;
       reader.readMessage(value,google_protobuf_timestamp_pb.Timestamp.deserializeBinaryFromReader);
       msg.setTimestamp(value);
+      break;
+    case 3:
+      var value = /** @type {!Array<number>} */ (reader.readPackedInt32());
+      msg.setIdsList(value);
       break;
     default:
       reader.skipField();
@@ -142,9 +155,9 @@ proto.example.Root.prototype.serializeBinary = function() {
  */
 proto.example.Root.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getChild();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getChildList();
+  if (f.length > 0) {
+    writer.writeRepeatedMessage(
       1,
       f,
       proto.example.Root.Child.serializeBinaryToWriter
@@ -156,6 +169,13 @@ proto.example.Root.serializeBinaryToWriter = function(message, writer) {
       2,
       f,
       google_protobuf_timestamp_pb.Timestamp.serializeBinaryToWriter
+    );
+  }
+  f = message.getIdsList();
+  if (f.length > 0) {
+    writer.writePackedInt32(
+      3,
+      f
     );
   }
 };
@@ -431,32 +451,33 @@ proto.example.Root.Child.prototype.clearGrandchildrenMap = function() {
 
 
 /**
- * optional Child child = 1;
- * @return {?proto.example.Root.Child}
+ * repeated Child child = 1;
+ * @return {!Array<!proto.example.Root.Child>}
  */
-proto.example.Root.prototype.getChild = function() {
-  return /** @type{?proto.example.Root.Child} */ (
-    jspb.Message.getWrapperField(this, proto.example.Root.Child, 1));
+proto.example.Root.prototype.getChildList = function() {
+  return /** @type{!Array<!proto.example.Root.Child>} */ (
+    jspb.Message.getRepeatedWrapperField(this, proto.example.Root.Child, 1));
 };
 
 
-/** @param {?proto.example.Root.Child|undefined} value */
-proto.example.Root.prototype.setChild = function(value) {
-  jspb.Message.setWrapperField(this, 1, value);
-};
-
-
-proto.example.Root.prototype.clearChild = function() {
-  this.setChild(undefined);
+/** @param {!Array<!proto.example.Root.Child>} value */
+proto.example.Root.prototype.setChildList = function(value) {
+  jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
 
 /**
- * Returns whether this field is set.
- * @return {!boolean}
+ * @param {!proto.example.Root.Child=} opt_value
+ * @param {number=} opt_index
+ * @return {!proto.example.Root.Child}
  */
-proto.example.Root.prototype.hasChild = function() {
-  return jspb.Message.getField(this, 1) != null;
+proto.example.Root.prototype.addChild = function(opt_value, opt_index) {
+  return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.example.Root.Child, opt_index);
+};
+
+
+proto.example.Root.prototype.clearChildList = function() {
+  this.setChildList([]);
 };
 
 
@@ -487,6 +508,35 @@ proto.example.Root.prototype.clearTimestamp = function() {
  */
 proto.example.Root.prototype.hasTimestamp = function() {
   return jspb.Message.getField(this, 2) != null;
+};
+
+
+/**
+ * repeated int32 ids = 3;
+ * @return {!Array<number>}
+ */
+proto.example.Root.prototype.getIdsList = function() {
+  return /** @type {!Array<number>} */ (jspb.Message.getRepeatedField(this, 3));
+};
+
+
+/** @param {!Array<number>} value */
+proto.example.Root.prototype.setIdsList = function(value) {
+  jspb.Message.setField(this, 3, value || []);
+};
+
+
+/**
+ * @param {!number} value
+ * @param {number=} opt_index
+ */
+proto.example.Root.prototype.addIds = function(value, opt_index) {
+  jspb.Message.addToRepeatedField(this, 3, value, opt_index);
+};
+
+
+proto.example.Root.prototype.clearIdsList = function() {
+  this.setIdsList([]);
 };
 
 

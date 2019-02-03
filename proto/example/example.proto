@@ -7,8 +7,9 @@ import "other/other.proto";
 package example;
 
 message Root {
-    Child child = 1;
+    repeated Child child = 1;
     google.protobuf.Timestamp timestamp = 2;
+    repeated int32 ids = 3;
 
     message Child {
         map<string, Grandchild> grandchildren = 1;
