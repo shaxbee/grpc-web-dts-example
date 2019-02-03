@@ -1,0 +1,25 @@
+{
+  "name": "grpc-web-dts-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shaxbee/grpc-web-dts-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shaxbee/grpc-web-dts-example/issues"
+  },
+  "homepage": "https://github.com/shaxbee/grpc-web-dts-example#readme",
+  "dependencies": {
+    "google-protobuf": "^3.7.0-rc.2"
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.2.7"
+  }
+}

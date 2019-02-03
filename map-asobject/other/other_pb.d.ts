@@ -1,7 +1,6 @@
 import * as jspb from "google-protobuf"
 
 export class Other extends jspb.Message {
-  constructor ();
   getFoo(): string;
   setFoo(value: string): void;
 
