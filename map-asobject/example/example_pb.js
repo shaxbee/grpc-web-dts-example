@@ -75,7 +75,8 @@ proto.example.Root.toObject = function(includeInstance, msg) {
     childList: jspb.Message.toObjectList(msg.getChildList(),
     proto.example.Root.Child.toObject, includeInstance),
     timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    idsList: jspb.Message.getRepeatedField(msg, 3)
+    idsList: jspb.Message.getRepeatedField(msg, 3),
+    longnum: jspb.Message.getFieldWithDefault(msg, 4, "0")
   };
 
   if (includeInstance) {
@@ -126,6 +127,10 @@ proto.example.Root.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {!Array<number>} */ (reader.readPackedInt32());
       msg.setIdsList(value);
       break;
+    case 4:
+      var value = /** @type {string} */ (reader.readInt64String());
+      msg.setLongnum(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -175,6 +180,13 @@ proto.example.Root.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writePackedInt32(
       3,
+      f
+    );
+  }
+  f = message.getLongnum();
+  if (parseInt(f, 10) !== 0) {
+    writer.writeInt64String(
+      4,
       f
     );
   }
@@ -537,6 +549,21 @@ proto.example.Root.prototype.addIds = function(value, opt_index) {
 
 proto.example.Root.prototype.clearIdsList = function() {
   this.setIdsList([]);
+};
+
+
+/**
+ * optional int64 longnum = 4;
+ * @return {string}
+ */
+proto.example.Root.prototype.getLongnum = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, "0"));
+};
+
+
+/** @param {string} value */
+proto.example.Root.prototype.setLongnum = function(value) {
+  jspb.Message.setProto3StringIntField(this, 4, value);
 };
 
 

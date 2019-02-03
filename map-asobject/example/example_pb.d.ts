@@ -19,6 +19,9 @@ export class Root extends jspb.Message {
   getIdsList(): Array<number>;
   setIdsList(value: Array<number>): void;
 
+  getLongnum(): string;
+  setLongnum(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Root.AsObject;
   static toObject(includeInstance: boolean, msg: Root): Root.AsObject;
@@ -32,6 +35,7 @@ export namespace Root {
     childList: Array<Root.Child.AsObject>,
     timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     idsList: Array<number>,
+    longnum: string,
   }
 
   export class Child extends jspb.Message {
@@ -51,32 +55,6 @@ export namespace Root {
     export type AsObject = {
       grandchildrenMap: Array<[string, Root.Child.Grandchild.AsObject]>,
     }
-
-    export class GrandchildrenEntry extends jspb.Message {
-      constructor ();
-      getKey(): string;
-      setKey(value: string): void;
-
-      hasValue(): boolean;
-      clearValue(): void;
-      getValue(): Root.Child.Grandchild | undefined;
-      setValue(value?: Root.Child.Grandchild): void;
-
-      serializeBinary(): Uint8Array;
-      toObject(includeInstance?: boolean): GrandchildrenEntry.AsObject;
-      static toObject(includeInstance: boolean, msg: GrandchildrenEntry): GrandchildrenEntry.AsObject;
-      static serializeBinaryToWriter(message: GrandchildrenEntry, writer: jspb.BinaryWriter): void;
-      static deserializeBinary(bytes: Uint8Array): GrandchildrenEntry;
-      static deserializeBinaryFromReader(message: GrandchildrenEntry, reader: jspb.BinaryReader): GrandchildrenEntry;
-    }
-
-    export namespace GrandchildrenEntry {
-      export type AsObject = {
-        key: string,
-        value?: Root.Child.Grandchild.AsObject,
-      }
-    }
-
 
     export class Grandchild extends jspb.Message {
       constructor ();

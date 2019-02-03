@@ -13,6 +13,7 @@ protoc_id=$(docker build -q ${build_args})
 
 mkdir -p ${BRANCH}
 docker run -v $(pwd):/opt/proto ${protoc_id} \
+    --js_out=import_style=commonjs:./${BRANCH} \
     --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./${BRANCH} \
     --proto_path=./proto \
     proto/example/example.proto \

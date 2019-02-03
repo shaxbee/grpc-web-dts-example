@@ -10,6 +10,7 @@ message Root {
     repeated Child child = 1;
     google.protobuf.Timestamp timestamp = 2;
     repeated int32 ids = 3;
+    int64 longnum = 4 [jstype=JS_STRING];
 
     message Child {
         map<string, Grandchild> grandchildren = 1;
