@@ -125,7 +125,8 @@ proto.example.Root.toObject = function(includeInstance, msg) {
     proto.example.Root.Child.toObject, includeInstance),
     timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     idsList: jspb.Message.getRepeatedField(msg, 3),
-    longnum: jspb.Message.getFieldWithDefault(msg, 4, "0")
+    longnum: jspb.Message.getFieldWithDefault(msg, 4, "0"),
+    pb_package: jspb.Message.getFieldWithDefault(msg, 5, "")
   };
 
   if (includeInstance) {
@@ -179,6 +180,10 @@ proto.example.Root.deserializeBinaryFromReader = function(msg, reader) {
     case 4:
       var value = /** @type {string} */ (reader.readInt64String());
       msg.setLongnum(value);
+      break;
+    case 5:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPackage(value);
       break;
     default:
       reader.skipField();
@@ -236,6 +241,13 @@ proto.example.Root.serializeBinaryToWriter = function(message, writer) {
   if (parseInt(f, 10) !== 0) {
     writer.writeInt64String(
       4,
+      f
+    );
+  }
+  f = message.getPackage();
+  if (f.length > 0) {
+    writer.writeString(
+      5,
       f
     );
   }
@@ -591,6 +603,21 @@ proto.example.Root.prototype.getLongnum = function() {
 /** @param {string} value */
 proto.example.Root.prototype.setLongnum = function(value) {
   jspb.Message.setProto3StringIntField(this, 4, value);
+};
+
+
+/**
+ * optional string package = 5;
+ * @return {string}
+ */
+proto.example.Root.prototype.getPackage = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
+};
+
+
+/** @param {string} value */
+proto.example.Root.prototype.setPackage = function(value) {
+  jspb.Message.setProto3StringField(this, 5, value);
 };
 
 

@@ -11,6 +11,7 @@ message Root {
     google.protobuf.Timestamp timestamp = 2;
     repeated int32 ids = 3;
     int64 longnum = 4 [jstype=JS_STRING];
+    string package = 5;
 
     message Child {
         map<string, Grandchild> grandchildren = 1;

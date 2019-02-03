@@ -17,6 +17,8 @@ export class Root extends jspb.Message {
   clearIdsList(): void;
   getLongnum(): number;
   setLongnum(value: number): void;
+  getPackage(): string;
+  setPackage(value: string): void;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Root.AsObject;
   static toObject(includeInstance: boolean, msg: Root): Root.AsObject;
@@ -31,6 +33,7 @@ export namespace Root {
     timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject;
     idsList: number[];
     longnum: number;
+    package: string;
   }
 
   export class Child extends jspb.Message {

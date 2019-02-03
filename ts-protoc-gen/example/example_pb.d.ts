@@ -25,6 +25,9 @@ export class Root extends jspb.Message {
   getLongnum(): string;
   setLongnum(value: string): void;
 
+  getPackage(): string;
+  setPackage(value: string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Root.AsObject;
   static toObject(includeInstance: boolean, msg: Root): Root.AsObject;
@@ -41,6 +44,7 @@ export namespace Root {
     timestamp?: google_protobuf_timestamp_pb.Timestamp.AsObject,
     idsList: Array<number>,
     longnum: string,
+    pb_package: string,
   }
 
   export class Child extends jspb.Message {
