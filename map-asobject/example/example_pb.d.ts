@@ -5,20 +5,20 @@ import * as google_protobuf_timestamp_pb from 'google-protobuf/google/protobuf/t
 import * as other_other_pb from '../other/other_pb';
 
 export class Root extends jspb.Message {
-  clearChildList(): void;
   getChildList(): Array<Root.Child>;
   setChildList(value: Array<Root.Child>): void;
+  clearChildList(): void;
   addChild(value?: Root.Child, index?: number): Root.Child;
 
-  hasTimestamp(): boolean;
-  clearTimestamp(): void;
   getTimestamp(): google_protobuf_timestamp_pb.Timestamp | undefined;
   setTimestamp(value?: google_protobuf_timestamp_pb.Timestamp): void;
+  hasTimestamp(): boolean;
+  clearTimestamp(): void;
 
-  clearIdsList(): void;
   getIdsList(): Array<number>;
   setIdsList(value: Array<number>): void;
-  addIds(value: number, index?: number): number;
+  clearIdsList(): void;
+  addIds(value: number, index?: number);
 
   getLongnum(): string;
   setLongnum(value: string): void;
@@ -44,8 +44,8 @@ export namespace Root {
   }
 
   export class Child extends jspb.Message {
-    clearGrandchildrenMap(): void;
     getGrandchildrenMap(): jspb.Map<string, Root.Child.Grandchild>;
+    clearGrandchildrenMap(): void;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Child.AsObject;
