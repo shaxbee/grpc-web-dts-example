@@ -77,7 +77,8 @@ proto.example.Root.toObject = function(includeInstance, msg) {
     timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
     idsList: jspb.Message.getRepeatedField(msg, 3),
     longnum: jspb.Message.getFieldWithDefault(msg, 4, "0"),
-    pb_package: jspb.Message.getFieldWithDefault(msg, 5, "")
+    pb_package: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -135,6 +136,10 @@ proto.example.Root.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPackage(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -199,6 +204,13 @@ proto.example.Root.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(
       5,
+      f
+    );
+  }
+  f = message.getData_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      6,
       f
     );
   }
@@ -591,6 +603,45 @@ proto.example.Root.prototype.getPackage = function() {
 /** @param {string} value */
 proto.example.Root.prototype.setPackage = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional bytes data = 6;
+ * @return {string}
+ */
+proto.example.Root.prototype.getData = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * optional bytes data = 6;
+ * This is a type-conversion wrapper around `getData()`
+ * @return {string}
+ */
+proto.example.Root.prototype.getData_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getData()));
+};
+
+
+/**
+ * optional bytes data = 6;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getData()`
+ * @return {!Uint8Array}
+ */
+proto.example.Root.prototype.getData_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getData()));
+};
+
+
+/** @param {!(string|Uint8Array)} value */
+proto.example.Root.prototype.setData = function(value) {
+  jspb.Message.setProto3BytesField(this, 6, value);
 };
 
 

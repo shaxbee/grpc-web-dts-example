@@ -18,13 +18,18 @@ export class Root extends jspb.Message {
   getIdsList(): Array<number>;
   setIdsList(value: Array<number>): void;
   clearIdsList(): void;
-  addIds(value: number, index?: number);
+  addIds(value: number, index?: number): void;
 
   getLongnum(): string;
   setLongnum(value: string): void;
 
   getPackage(): string;
   setPackage(value: string): void;
+
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Root.AsObject;
@@ -41,6 +46,7 @@ export namespace Root {
     idsList: Array<number>,
     longnum: string,
     pb_package: string,
+    data: Uint8Array | string,
   }
 
   export class Child extends jspb.Message {

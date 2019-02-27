@@ -8,7 +8,7 @@ BRANCH=${BRANCH:-master}
 echo "Building protoc image"
 protoc_id=''
 build_args="--build-arg ORIGIN=${ORIGIN} --build-arg BRANCH=${BRANCH} ./docker/protoc"
-docker build ${build_args}
+docker build --no-cache ${build_args}
 protoc_id=$(docker build -q ${build_args})
 
 function protoc() {

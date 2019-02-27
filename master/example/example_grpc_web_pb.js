@@ -70,11 +70,25 @@ proto.example.ExamplePromiseClient =
   options['format'] = 'text';
 
   /**
-   * @private @const {!proto.example.ExampleClient} The delegate callback based client
+   * @private @const {!grpc.web.GrpcWebClientBase} The client
    */
-  this.delegateClient_ = new proto.example.ExampleClient(
-      hostname, credentials, options);
+  this.client_ = new grpc.web.GrpcWebClientBase(options);
 
+  /**
+   * @private @const {string} The hostname
+   */
+  this.hostname_ = hostname;
+
+  /**
+   * @private @const {?Object} The credentials to be used to connect
+   *    to the server
+   */
+  this.credentials_ = credentials;
+
+  /**
+   * @private @const {?Object} Options for the client
+   */
+  this.options_ = options;
 };
 
 
@@ -121,17 +135,15 @@ proto.example.ExampleClient.prototype.foo =
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.google.protobuf.Empty>}
- *     The XHR Node Readable Stream
+ *     A native promise that resolves to the response
  */
 proto.example.ExamplePromiseClient.prototype.foo =
     function(request, metadata) {
-  var _this = this;
-  return new Promise(function (resolve, reject) {
-    _this.delegateClient_.foo(
-      request, metadata, function (error, response) {
-        error ? reject(error) : resolve(response);
-      });
-  });
+  return this.client_.unaryCall(this.hostname_ +
+      '/example.Example/Foo',
+      request,
+      metadata || {},
+      methodInfo_Example_Foo);
 };
 
 
@@ -178,17 +190,15 @@ proto.example.ExampleClient.prototype.other =
  * @param {?Object<string, string>} metadata User defined
  *     call metadata
  * @return {!Promise<!proto.other.Other>}
- *     The XHR Node Readable Stream
+ *     A native promise that resolves to the response
  */
 proto.example.ExamplePromiseClient.prototype.other =
     function(request, metadata) {
-  var _this = this;
-  return new Promise(function (resolve, reject) {
-    _this.delegateClient_.other(
-      request, metadata, function (error, response) {
-        error ? reject(error) : resolve(response);
-      });
-  });
+  return this.client_.unaryCall(this.hostname_ +
+      '/example.Example/Other',
+      request,
+      metadata || {},
+      methodInfo_Example_Other);
 };
 
 

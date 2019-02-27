@@ -96,13 +96,15 @@ proto.example.Root.repeatedFields_ = [1,3];
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.example.Root.prototype.toObject = function(opt_includeInstance) {
@@ -112,21 +114,22 @@ proto.example.Root.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.example.Root} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.example.Root.toObject = function(includeInstance, msg) {
-  var obj = {
+  var f, obj = {
     childList: jspb.Message.toObjectList(msg.getChildList(),
     proto.example.Root.Child.toObject, includeInstance),
     timestamp: (f = msg.getTimestamp()) && google_protobuf_timestamp_pb.Timestamp.toObject(includeInstance, f),
-    idsList: jspb.Message.getRepeatedField(msg, 3),
-    longnum: jspb.Message.getFieldWithDefault(msg, 4, "0"),
-    pb_package: jspb.Message.getFieldWithDefault(msg, 5, "")
+    idsList: (f = jspb.Message.getRepeatedField(msg, 3)) == null ? undefined : f,
+    longnum: (f = jspb.Message.getFieldWithDefault(msg, 4, "0")) == null ? undefined : f,
+    pb_package: (f = jspb.Message.getFieldWithDefault(msg, 5, "")) == null ? undefined : f,
+    data: msg.getData_asB64()
   };
 
   if (includeInstance) {
@@ -184,6 +187,10 @@ proto.example.Root.deserializeBinaryFromReader = function(msg, reader) {
     case 5:
       var value = /** @type {string} */ (reader.readString());
       msg.setPackage(value);
+      break;
+    case 6:
+      var value = /** @type {!Uint8Array} */ (reader.readBytes());
+      msg.setData(value);
       break;
     default:
       reader.skipField();
@@ -251,6 +258,13 @@ proto.example.Root.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
+  f = message.getData_asU8();
+  if (f.length > 0) {
+    writer.writeBytes(
+      6,
+      f
+    );
+  }
 };
 
 
@@ -259,13 +273,15 @@ proto.example.Root.serializeBinaryToWriter = function(message, writer) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.example.Root.Child.prototype.toObject = function(opt_includeInstance) {
@@ -275,15 +291,15 @@ proto.example.Root.Child.prototype.toObject = function(opt_includeInstance) {
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.example.Root.Child} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.example.Root.Child.toObject = function(includeInstance, msg) {
-  var obj = {
+  var f, obj = {
     grandchildrenMap: (f = msg.getGrandchildrenMap()) ? f.toObject(includeInstance, proto.example.Root.Child.Grandchild.toObject) : []
   };
 
@@ -368,13 +384,15 @@ proto.example.Root.Child.serializeBinaryToWriter = function(message, writer) {
 
 if (jspb.Message.GENERATE_TO_OBJECT) {
 /**
- * Creates an object representation of this proto suitable for use in Soy templates.
+ * Creates an object representation of this proto.
  * Field names that are reserved in JavaScript and will be renamed to pb_name.
+ * Optional fields that are not set will be set to undefined.
  * To access a reserved field use, foo.pb_<name>, eg, foo.pb_default.
  * For the list of reserved names please see:
- *     com.google.apps.jspb.JsClassTemplate.JS_RESERVED_WORDS.
- * @param {boolean=} opt_includeInstance Whether to include the JSPB instance
- *     for transitional soy proto support: http://goto/soy-param-migration
+ *     net/proto2/compiler/js/internal/generator.cc#kKeyword.
+ * @param {boolean=} opt_includeInstance Deprecated. whether to include the
+ *     JSPB instance for transitional soy proto support:
+ *     http://goto/soy-param-migration
  * @return {!Object}
  */
 proto.example.Root.Child.Grandchild.prototype.toObject = function(opt_includeInstance) {
@@ -384,15 +402,15 @@ proto.example.Root.Child.Grandchild.prototype.toObject = function(opt_includeIns
 
 /**
  * Static version of the {@see toObject} method.
- * @param {boolean|undefined} includeInstance Whether to include the JSPB
- *     instance for transitional soy proto support:
+ * @param {boolean|undefined} includeInstance Deprecated. Whether to include
+ *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
  * @param {!proto.example.Root.Child.Grandchild} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
 proto.example.Root.Child.Grandchild.toObject = function(includeInstance, msg) {
-  var obj = {
+  var f, obj = {
 
   };
 
@@ -618,6 +636,45 @@ proto.example.Root.prototype.getPackage = function() {
 /** @param {string} value */
 proto.example.Root.prototype.setPackage = function(value) {
   jspb.Message.setProto3StringField(this, 5, value);
+};
+
+
+/**
+ * optional bytes data = 6;
+ * @return {string}
+ */
+proto.example.Root.prototype.getData = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 6, ""));
+};
+
+
+/**
+ * optional bytes data = 6;
+ * This is a type-conversion wrapper around `getData()`
+ * @return {string}
+ */
+proto.example.Root.prototype.getData_asB64 = function() {
+  return /** @type {string} */ (jspb.Message.bytesAsB64(
+      this.getData()));
+};
+
+
+/**
+ * optional bytes data = 6;
+ * Note that Uint8Array is not supported on all browsers.
+ * @see http://caniuse.com/Uint8Array
+ * This is a type-conversion wrapper around `getData()`
+ * @return {!Uint8Array}
+ */
+proto.example.Root.prototype.getData_asU8 = function() {
+  return /** @type {!Uint8Array} */ (jspb.Message.bytesAsU8(
+      this.getData()));
+};
+
+
+/** @param {!(string|Uint8Array)} value */
+proto.example.Root.prototype.setData = function(value) {
+  jspb.Message.setProto3BytesField(this, 6, value);
 };
 
 

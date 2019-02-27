@@ -28,6 +28,11 @@ export class Root extends jspb.Message {
   getPackage(): string;
   setPackage(value: string): void;
 
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): void;
+
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): Root.AsObject;
   static toObject(includeInstance: boolean, msg: Root): Root.AsObject;
@@ -45,6 +50,7 @@ export namespace Root {
     idsList: Array<number>,
     longnum: string,
     pb_package: string,
+    data: Uint8Array | string,
   }
 
   export class Child extends jspb.Message {
